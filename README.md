@@ -48,30 +48,6 @@ Whether you're a beginner learning algorithms or a developer brushing up on conc
 
 ---
 
-## 📁 Folder Structure
-
-```
-
-/src
-/components
-SortingVisualizer.jsx
-PathfindingVisualizer.jsx
-ControlPanel.jsx
-/algorithms
-sorting/
-bubbleSort.js
-quickSort.js
-pathfinding/
-dijkstra.js
-astar.js
-/assets
-/styles
-App.js
-index.js
-````
-
----
-
 ## 🧪 Future Enhancements
 - 📈 Algorithm performance comparison charts
 - 📱 Mobile responsiveness
