@@ -1,69 +1,123 @@
-# React + TypeScript + Vite
+# 🔁 AlgoPulse – Watch Algorithms Come to Life
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AlgoPulse is an interactive web-based visualization tool built to help users **see and understand how algorithms work**. From sorting arrays to finding the shortest path through a maze, AlgoPulse brings the logic to life with real-time animations, controls, and an intuitive interface.
 
-Currently, two official plugins are available:
+Whether you're a beginner learning algorithms or a developer brushing up on concepts — AlgoPulse offers a hands-on way to explore, experiment, and learn.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 📊 Sorting Algorithms
+- Bubble Sort  
+- Insertion Sort  
+- Selection Sort  
+- Merge Sort  
+- Quick Sort  
+- Heap Sort  
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+🔍 **Visualization Highlights**
+- Animated bars that grow/shrink based on value
+- Color-coded swaps, comparisons, and sorted sections
+- Adjustable speed and array size
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 🧭 Pathfinding Algorithms
+- Dijkstra's Algorithm  
+- A* Search  
+- Breadth-First Search (BFS)  
+- Depth-First Search (DFS)  
+
+🌐 **Grid System**
+- Interactive grid creation (draw walls, set start/end)
+- Real-time exploration visualization
+- Displays shortest path clearly
+
+---
+
+## 🧑‍💻 Tech Stack
+
+| Technology       | Purpose                       |
+|------------------|-------------------------------|
+| **React.js**      | Component-based UI             |
+| **Tailwind CSS**  | Styling and responsiveness     |
+| **JavaScript**    | Core algorithm logic           |
+| **Framer Motion / GSAP** | Smooth animations     |
+| **Canvas / HTML Grid** | Rendering visuals         |
+
+---
+
+## 📁 Folder Structure
+
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+/src
+/components
+SortingVisualizer.jsx
+PathfindingVisualizer.jsx
+ControlPanel.jsx
+/algorithms
+sorting/
+bubbleSort.js
+quickSort.js
+pathfinding/
+dijkstra.js
+astar.js
+/assets
+/styles
+App.js
+index.js
+````
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🧪 Future Enhancements
+- 📈 Algorithm performance comparison charts
+- 📱 Mobile responsiveness
+- 🧩 Custom input support for arrays and grids
+- 🎮 Puzzle mode: Solve pathfinding mazes as a game
+- 🧠 Real-time complexity indicators
+
+---
+
+## 📦 Getting Started
+
+### ✅ Prerequisites
+- Node.js (v14+)
+- npm or yarn
+
+### 🛠 Installation
+
+```bash
+git clone https://github.com/your-username/algopulse.git
+cd algopulse
+npm install
+npm start
+````
+
+The app will run locally at `http://localhost:3000`.
+
+---
+
+## 📚 Educational Value
+
+* Visualize and understand algorithm logic
+* Learn how different algorithms compare
+* Experience the real-world application of data structures like stacks, queues, heaps, and graphs
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome. For major changes, open an issue first to discuss your proposed changes.
+
+---
+
+## 📄 License
+
+Licensed under the [MIT License](LICENSE).
+
+---
+
+> Made with ❤️ by Deepak Shukla
