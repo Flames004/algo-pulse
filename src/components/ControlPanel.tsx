@@ -8,6 +8,8 @@ type ControlPanelProps = {
   setArraySize: (size: number) => void;
   onStart: () => void;
   isSorting: boolean;
+  speed: number;
+  setSpeed: (speed: number) => void;
 };
 
 const ControlPanel: React.FC<ControlPanelProps> = ({
@@ -18,6 +20,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   setArraySize,
   onStart,
   isSorting,
+  speed,
+  setSpeed,
 }) => {
   return (
     <div className="bg-gray-800 text-white p-4 rounded-lg shadow-md flex flex-wrap items-center justify-between gap-4">
@@ -64,8 +68,23 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           max="100"
           value={arraySize}
           onChange={(e) => setArraySize(Number(e.target.value))}
-          className="accent-blue-500"
+          className="accent-blue-500 ml-2"
           type="range"
+        />
+      </div>
+
+      <div className="flex">
+        <label htmlFor="speed">Speed: {speed}ms</label>
+        <input
+          id="speed"
+          min="10"
+          max="1000"
+          step="10"
+          type="range"
+          value={speed}
+          onChange={(e) => setSpeed(Number(e.target.value))}
+          className="accent-green-500 ml-2"
+          disabled={isSorting}
         />
       </div>
     </div>

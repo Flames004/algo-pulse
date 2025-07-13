@@ -8,7 +8,8 @@ const SortingVisualizer = () => {
   const [arraySize, setArraySize] = useState<number>(50);
   const [isSorting, setIsSorting] = useState<boolean>(false);
   const [barStates, setBarStates] = useState<string[]>([]); // To track the state of each bar during sorting
-
+  const [speed, setSpeed] = useState<number>(100); // Speed of sorting visualization
+ 
   const generateArray = useCallback(
     (length = arraySize, min: number = 10, max: number = 300) => {
       const newArray = Array.from(
@@ -35,7 +36,7 @@ const SortingVisualizer = () => {
       (updatedArray: number[], updatedStates: string[]) => {
         setArray(updatedArray);
         setBarStates(updatedStates);
-      }
+      }, speed
     );
 
     setIsSorting(false);
@@ -51,6 +52,8 @@ const SortingVisualizer = () => {
         setArraySize={setArraySize}
         onStart={startSort}
         isSorting={isSorting}
+        speed={speed}
+        setSpeed={setSpeed}
       />
 
       <div className="flex items-end h-80 w-full gap-[2px] mt-6 overflow-hidden">

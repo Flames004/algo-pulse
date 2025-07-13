@@ -3,7 +3,7 @@ export type BarUpdateCallback = (arr: number[], barStates: string[]) => void;
 export const bubbleSort = async (
   arr: number[],
   callback: BarUpdateCallback,
-  speed: number = 50
+  speed: number = 100
 ) => {
   const array = [...arr];
   const states = new Array(array.length).fill("normal");
