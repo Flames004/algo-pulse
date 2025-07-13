@@ -3,6 +3,7 @@ import ControlPanel from "./ControlPanel";
 import { bubbleSort } from "../algorithms/sorting/bubbleSort";
 import { selectionSort } from "../algorithms/sorting/selectionSort";
 import { mergeSort } from "../algorithms/sorting/mergeSort";
+import { insertionSort } from "../algorithms/sorting/insertionSort";
 
 const SortingVisualizer = () => {
   const [array, setArray] = useState<number[]>([]);
@@ -43,6 +44,8 @@ const SortingVisualizer = () => {
       await selectionSort(array, handleUpdate, speed);
     } else if (selectedAlgorithm === "merge") {
       await mergeSort(array, handleUpdate, speed);
+    } else if (selectedAlgorithm === "insertion") {
+      await insertionSort(array, handleUpdate, speed);
     }
 
     setIsSorting(false);
