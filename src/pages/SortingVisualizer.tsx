@@ -7,6 +7,7 @@ import { insertionSort } from "../algorithms/sorting/insertionSort";
 import { quickSort } from "../algorithms/sorting/quickSort";
 import { heapSort } from "../algorithms/sorting/heapSort";
 import { shellSort } from "../algorithms/sorting/shellSort";
+import PageWrapper from "../components/PageWrapper";
 
 const SortingVisualizer = () => {
   const [array, setArray] = useState<number[]>([]);
@@ -71,40 +72,42 @@ const SortingVisualizer = () => {
   };
 
   return (
-    <div className="mt-4 p-4 bg-gray-800 rounded">
-      <ControlPanel
-        onGenerateArray={() => generateArray()}
-        selectedAlgorithm={selectedAlgorithm}
-        setSelectedAlgorithm={setSelectedAlgorithm}
-        arraySize={arraySize}
-        setArraySize={setArraySize}
-        onStart={startSort}
-        isSorting={isSorting}
-        speed={speed}
-        setSpeed={setSpeed}
-        onReset={resetVisualizer}
-      />
+    <PageWrapper>
+      <div className="mt-4 p-4 bg-gray-800 rounded">
+        <ControlPanel
+          onGenerateArray={() => generateArray()}
+          selectedAlgorithm={selectedAlgorithm}
+          setSelectedAlgorithm={setSelectedAlgorithm}
+          arraySize={arraySize}
+          setArraySize={setArraySize}
+          onStart={startSort}
+          isSorting={isSorting}
+          speed={speed}
+          setSpeed={setSpeed}
+          onReset={resetVisualizer}
+        />
 
-      <div className="flex items-end h-80 w-full gap-[2px] mt-6 overflow-hidden">
-        {array.map((value, idx) => {
-          let color = "bg-blue-500"; // default
-          if (barStates[idx] === "compare") color = "bg-yellow-400";
-          else if (barStates[idx] === "swap") color = "bg-red-500";
-          else if (barStates[idx] === "sorted") color = "bg-green-500";
+        <div className="flex items-end h-80 w-full gap-[2px] mt-6 overflow-hidden">
+          {array.map((value, idx) => {
+            let color = "bg-blue-500"; // default
+            if (barStates[idx] === "compare") color = "bg-yellow-400";
+            else if (barStates[idx] === "swap") color = "bg-red-500";
+            else if (barStates[idx] === "sorted") color = "bg-green-500";
 
-          return (
-            <div
-              key={idx}
-              className={`${color} rounded transition-all duration-300 ease-in-out`}
-              style={{
-                height: `${value}px`,
-                width: `${100 / array.length}%`,
-              }}
-            ></div>
-          );
-        })}
+            return (
+              <div
+                key={idx}
+                className={`${color} rounded transition-all duration-300 ease-in-out`}
+                style={{
+                  height: `${value}px`,
+                  width: `${100 / array.length}%`,
+                }}
+              ></div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </PageWrapper>
   );
 };
 
