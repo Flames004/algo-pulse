@@ -10,6 +10,7 @@ type ControlPanelProps = {
   isSorting: boolean;
   speed: number;
   setSpeed: (speed: number) => void;
+  onReset: () => void;
 };
 
 const ControlPanel: React.FC<ControlPanelProps> = ({
@@ -22,6 +23,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   isSorting,
   speed,
   setSpeed,
+  onReset,
 }) => {
   return (
     <div className="bg-gray-800 text-white p-4 rounded-lg shadow-md flex flex-wrap items-center justify-between gap-4">
@@ -41,7 +43,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           Start
         </button>
 
-        <button className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded">
+        <button onClick={onReset} className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded">
           Reset
         </button>
       </div>

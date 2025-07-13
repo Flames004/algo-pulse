@@ -16,6 +16,7 @@ const SortingVisualizer = () => {
   const [barStates, setBarStates] = useState<string[]>([]); // To track the state of each bar during sorting
   const [speed, setSpeed] = useState<number>(100); // Speed of sorting visualization
 
+  // Function to generate a random array
   const generateArray = useCallback(
     (length = arraySize, min: number = 10, max: number = 300) => {
       const newArray = Array.from(
@@ -60,6 +61,15 @@ const SortingVisualizer = () => {
     setIsSorting(false);
   };
 
+  // Reset the visualizer to initial state
+  const resetVisualizer = () => {
+    setIsSorting(false);
+    setSelectedAlgorithm("bubble");
+    setSpeed(50);
+    setArraySize(50);
+    generateArray();
+  };
+
   return (
     <div className="mt-4 p-4 bg-gray-800 rounded">
       <ControlPanel
@@ -72,6 +82,7 @@ const SortingVisualizer = () => {
         isSorting={isSorting}
         speed={speed}
         setSpeed={setSpeed}
+        onReset={resetVisualizer}
       />
 
       <div className="flex items-end h-80 w-full gap-[2px] mt-6 overflow-hidden">
