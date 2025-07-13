@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import ControlPanel from "./ControlPanel";
 import { bubbleSort } from "../algorithms/sorting/bubbleSort";
 import { selectionSort } from "../algorithms/sorting/selectionSort";
+import { mergeSort } from "../algorithms/sorting/mergeSort";
 
 const SortingVisualizer = () => {
   const [array, setArray] = useState<number[]>([]);
@@ -40,7 +41,10 @@ const SortingVisualizer = () => {
       await bubbleSort(array, handleUpdate, speed);
     } else if (selectedAlgorithm === "selection") {
       await selectionSort(array, handleUpdate, speed);
+    } else if (selectedAlgorithm === "merge") {
+      await mergeSort(array, handleUpdate, speed);
     }
+
     setIsSorting(false);
   };
 
