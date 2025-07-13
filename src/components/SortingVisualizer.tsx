@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import ControlPanel from "./ControlPanel";
 import { bubbleSort } from "../algorithms/sorting/bubbleSort";
+import { selectionSort } from "../algorithms/sorting/selectionSort";
 
 const SortingVisualizer = () => {
   const [array, setArray] = useState<number[]>([]);
@@ -9,7 +10,7 @@ const SortingVisualizer = () => {
   const [isSorting, setIsSorting] = useState<boolean>(false);
   const [barStates, setBarStates] = useState<string[]>([]); // To track the state of each bar during sorting
   const [speed, setSpeed] = useState<number>(100); // Speed of sorting visualization
- 
+
   const generateArray = useCallback(
     (length = arraySize, min: number = 10, max: number = 300) => {
       const newArray = Array.from(
@@ -28,17 +29,18 @@ const SortingVisualizer = () => {
   }, [arraySize, generateArray]); // Regenrate array when slider changes
 
   // Function to start sorting
+  const handleUpdate = (updatedArray: number[], updatedStates: string[]) => {
+    setArray(updatedArray);
+    setBarStates(updatedStates);
+  };
+
   const startSort = async () => {
     setIsSorting(true);
-
-    await bubbleSort(
-      array,
-      (updatedArray: number[], updatedStates: string[]) => {
-        setArray(updatedArray);
-        setBarStates(updatedStates);
-      }, speed
-    );
-
+    if (selectedAlgorithm === "bubble") {
+      await bubbleSort(array, handleUpdate, speed);
+    } else if (selectedAlgorithm === "selection") {
+      await selectionSort(array, handleUpdate, speed);
+    }
     setIsSorting(false);
   };
 
