@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import ControlPanel from "./ControlPanel";
+import ControlPanel from "../components/ControlPanel";
 import { bubbleSort } from "../algorithms/sorting/bubbleSort";
 import { selectionSort } from "../algorithms/sorting/selectionSort";
 import { mergeSort } from "../algorithms/sorting/mergeSort";
