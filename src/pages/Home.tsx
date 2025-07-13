@@ -25,7 +25,7 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 w-full max-w-4xl">
           <div
             onClick={() => navigate("/sorting")}
-            className="bg-[#1e293b] hover:bg-[#27384d] transition cursor-pointer p-6 rounded-xl shadow-md border border-gray-700"
+            className="bg-[#1e293b] hover:bg-[#27384d] transition cursor-pointer p-6 rounded-xl shadow-md border border-gray-700 hover:scale-105"
           >
             <h2 className="text-2xl font-semibold mb-2">
               Sorting Visualization
@@ -37,7 +37,7 @@ const Home = () => {
 
           <div
             onClick={() => navigate("/pathfinding")}
-            className="bg-[#1e293b] hover:bg-[#27384d] transition cursor-pointer p-6 rounded-xl shadow-md border border-gray-700"
+            className="bg-[#1e293b] hover:bg-[#27384d] transition cursor-pointer p-6 rounded-xl shadow-md border border-gray-700 hover:scale-105"
           >
             <h2 className="text-2xl font-semibold mb-2">
               Pathfinding Visualization

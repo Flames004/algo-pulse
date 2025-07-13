@@ -1,4 +1,5 @@
-# 🔁 AlgoPulse – Watch Algorithms Come to Life
+
+# ![logo](./src/assets/logo.svg) AlgoPulse – Watch Algorithms Come to Life
 
 AlgoPulse is an interactive web-based visualization tool built to help users **see and understand how algorithms work**. From sorting arrays to finding the shortest path through a maze, AlgoPulse brings the logic to life with real-time animations, controls, and an intuitive interface.
 
