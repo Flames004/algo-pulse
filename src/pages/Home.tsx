@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import AnimatedLogo from "../components/AnimatedLogo";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -7,11 +8,7 @@ const Home = () => {
     <div className="min-h-screen bg-gradient-to-br from-[#0a0f1a] to-[#0f172a] text-white flex flex-col items-center justify-center px-6">
       {/* Logo + Title */}
       <div className="flex flex-col items-center gap-4">
-        <img
-          src="./src/assets/logo.svg"
-          alt="AlgoPulse Logo"
-          className="w-24 h-24"
-        />
+        <AnimatedLogo />
         <span className="text-6xl font-bold text-white tracking-wider">
           Algo<span className="text-blue-400">Pulse</span>
         </span>
