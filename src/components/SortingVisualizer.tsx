@@ -4,6 +4,7 @@ import { bubbleSort } from "../algorithms/sorting/bubbleSort";
 import { selectionSort } from "../algorithms/sorting/selectionSort";
 import { mergeSort } from "../algorithms/sorting/mergeSort";
 import { insertionSort } from "../algorithms/sorting/insertionSort";
+import { quickSort } from "../algorithms/sorting/quickSort";
 
 const SortingVisualizer = () => {
   const [array, setArray] = useState<number[]>([]);
@@ -46,6 +47,8 @@ const SortingVisualizer = () => {
       await mergeSort(array, handleUpdate, speed);
     } else if (selectedAlgorithm === "insertion") {
       await insertionSort(array, handleUpdate, speed);
+    } else if (selectedAlgorithm === "quick") {
+      await quickSort(array, handleUpdate, speed);
     }
 
     setIsSorting(false);
