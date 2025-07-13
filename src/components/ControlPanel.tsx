@@ -26,7 +26,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   onReset,
 }) => {
   return (
-    <div className="bg-gray-800 text-white p-4 rounded-lg shadow-md flex flex-wrap items-center justify-between gap-4">
+    <div className="bg-gray-800 text-white p-4 rounded-lg shadow-md flex flex-wrap items-center justify-between gap-4 border border-gray-700">
       <div className="flex gap-4 flex-wrap">
         <button
           onClick={() => onGenerateArray()}
@@ -43,7 +43,10 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           Start
         </button>
 
-        <button onClick={onReset} className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded">
+        <button
+          onClick={onReset}
+          className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded"
+        >
           Reset
         </button>
       </div>

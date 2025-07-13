@@ -95,7 +95,7 @@ const SortingVisualizer = () => {
           return (
             <div
               key={idx}
-              className={`${color} rounded`}
+              className={`${color} rounded transition-all duration-300 ease-in-out`}
               style={{
                 height: `${value}px`,
                 width: `${100 / array.length}%`,
