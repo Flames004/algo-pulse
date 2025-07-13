@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ControlPanel from "./ControlPanel";
 
 const SortingVisualizer = () => {
@@ -6,22 +6,21 @@ const SortingVisualizer = () => {
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<string>("bubble");
   const [arraySize, setArraySize] = useState<number>(50);
 
-  const generateArray = (
-    length = arraySize,
-    min: number = 10,
-    max: number = 300
-  ) => {
-    const newArray = Array.from(
-      { length },
-      () => Math.floor(Math.random() * (max - min + 1)) + min
-    );
-    console.log("Generated Array:", newArray);
-    setArray(newArray);
-  };
+  const generateArray = useCallback(
+    (length = arraySize, min: number = 10, max: number = 300) => {
+      const newArray = Array.from(
+        { length },
+        () => Math.floor(Math.random() * (max - min + 1)) + min
+      );
+      console.log("Generated Array:", newArray);
+      setArray(newArray);
+    },
+    [arraySize]
+  );
 
   useEffect(() => {
     generateArray();
-  }, [arraySize]); // Regenrate array when slider changes
+  }, [arraySize, generateArray]); // Regenrate array when slider changes
 
   return (
     <div className="mt-4 p-4 bg-gray-800 rounded">
