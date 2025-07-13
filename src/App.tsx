@@ -1,24 +1,21 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import PathfindingVisualizer from "./components/PathfindingVisualizer";
 import SortingVisualizer from "./components/SortingVisualizer";
+import PathfindingVisualizer from "./components/PathfindingVisualizer";
 
-function App() {
+const App = () => {
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <Router>
       <NavBar />
-      <main className="p-4 space-y-8">
-        <section>
-          <h2 className="text-xl font-semibold mb-2">Sorting Visualizer</h2>
-          <SortingVisualizer />
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold mb-2">Pathfinding Visualizer</h2>
-          <PathfindingVisualizer />
-        </section>
-      </main>
-    </div>
+      <div className="px-4 py-6 max-w-screen mx-auto bg-gray-800">
+        <Routes>
+          <Route path="/" element={<div className="text-center text-gray-400">Choose a module from the top menu</div>} />
+          <Route path="/sorting" element={<SortingVisualizer />} />
+          <Route path="/pathfinding" element={<PathfindingVisualizer />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
