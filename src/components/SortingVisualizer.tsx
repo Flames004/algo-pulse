@@ -5,6 +5,7 @@ import { selectionSort } from "../algorithms/sorting/selectionSort";
 import { mergeSort } from "../algorithms/sorting/mergeSort";
 import { insertionSort } from "../algorithms/sorting/insertionSort";
 import { quickSort } from "../algorithms/sorting/quickSort";
+import { heapSort } from "../algorithms/sorting/heapSort";
 
 const SortingVisualizer = () => {
   const [array, setArray] = useState<number[]>([]);
@@ -49,6 +50,8 @@ const SortingVisualizer = () => {
       await insertionSort(array, handleUpdate, speed);
     } else if (selectedAlgorithm === "quick") {
       await quickSort(array, handleUpdate, speed);
+    } else if (selectedAlgorithm === "heap") {
+      await heapSort(array, handleUpdate, speed);
     }
 
     setIsSorting(false);
