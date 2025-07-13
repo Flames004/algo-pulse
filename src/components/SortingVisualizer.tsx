@@ -1,10 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
 import ControlPanel from "./ControlPanel";
+import { bubbleSort } from "../algorithms/sorting/bubbleSort";
 
 const SortingVisualizer = () => {
   const [array, setArray] = useState<number[]>([]);
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<string>("bubble");
   const [arraySize, setArraySize] = useState<number>(50);
+  const [isSorting, setIsSorting] = useState<boolean>(false);
+  const [barStates, setBarStates] = useState<string[]>([]); // To track the state of each bar during sorting
 
   const generateArray = useCallback(
     (length = arraySize, min: number = 10, max: number = 300) => {
@@ -14,6 +17,7 @@ const SortingVisualizer = () => {
       );
       console.log("Generated Array:", newArray);
       setArray(newArray);
+      setBarStates(Array(length).fill("normal")); // Reset bar states
     },
     [arraySize]
   );
@@ -22,24 +26,51 @@ const SortingVisualizer = () => {
     generateArray();
   }, [arraySize, generateArray]); // Regenrate array when slider changes
 
+  // Function to start sorting
+  const startSort = async () => {
+    setIsSorting(true);
+
+    await bubbleSort(
+      array,
+      (updatedArray: number[], updatedStates: string[]) => {
+        setArray(updatedArray);
+        setBarStates(updatedStates);
+      }
+    );
+
+    setIsSorting(false);
+  };
+
   return (
     <div className="mt-4 p-4 bg-gray-800 rounded">
       <ControlPanel
-        onGenerateArray={generateArray}
+        onGenerateArray={() => generateArray()}
         selectedAlgorithm={selectedAlgorithm}
         setSelectedAlgorithm={setSelectedAlgorithm}
         arraySize={arraySize}
         setArraySize={setArraySize}
+        onStart={startSort}
+        isSorting={isSorting}
       />
 
-      <div className="flex items-end h-80 w-full gap-1 mt-6">
-        {array.map((value, idx) => (
-          <div
-            key={idx}
-            className="bg-blue-500 rounded"
-            style={{ height: `${value}px`, width: `${100 / array.length}%` }} // dynamic width based on array size
-          ></div>
-        ))}
+      <div className="flex items-end h-80 w-full gap-[2px] mt-6 overflow-hidden">
+        {array.map((value, idx) => {
+          let color = "bg-blue-500"; // default
+          if (barStates[idx] === "compare") color = "bg-yellow-400";
+          else if (barStates[idx] === "swap") color = "bg-red-500";
+          else if (barStates[idx] === "sorted") color = "bg-green-500";
+
+          return (
+            <div
+              key={idx}
+              className={`${color} rounded`}
+              style={{
+                height: `${value}px`,
+                width: `${100 / array.length}%`,
+              }}
+            ></div>
+          );
+        })}
       </div>
     </div>
   );

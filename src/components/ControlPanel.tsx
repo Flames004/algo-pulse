@@ -6,6 +6,8 @@ type ControlPanelProps = {
   setSelectedAlgorithm: (algo: string) => void;
   arraySize: number;
   setArraySize: (size: number) => void;
+  onStart: () => void;
+  isSorting: boolean;
 };
 
 const ControlPanel: React.FC<ControlPanelProps> = ({
@@ -14,6 +16,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   setSelectedAlgorithm,
   arraySize,
   setArraySize,
+  onStart,
+  isSorting,
 }) => {
   return (
     <div className="bg-gray-800 text-white p-4 rounded-lg shadow-md flex flex-wrap items-center justify-between gap-4">
@@ -24,9 +28,15 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         >
           Generate Array
         </button>
-        <button className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">
+
+        <button
+          onClick={onStart}
+          className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded"
+          disabled={isSorting}
+        >
           Start
         </button>
+
         <button className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded">
           Reset
         </button>
@@ -48,14 +58,15 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
 
       <div className="flex">
         <label htmlFor="size">Size: {arraySize}</label>
-        <input 
-        id="size"
-        min="10"
-        max="100"
-        value={arraySize}
-        onChange={(e)=> setArraySize(Number(e.target.value))}
-        className="accent-blue-500"
-        type="range" />
+        <input
+          id="size"
+          min="10"
+          max="100"
+          value={arraySize}
+          onChange={(e) => setArraySize(Number(e.target.value))}
+          className="accent-blue-500"
+          type="range"
+        />
       </div>
     </div>
   );
