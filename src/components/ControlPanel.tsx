@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaInfoCircle, FaTimes } from "react-icons/fa";
+import algoInfo, { type AlgoKey } from "../data/algoInfo";
 
 type ControlPanelProps = {
   onGenerateArray: () => void;
@@ -25,6 +27,9 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   setSpeed,
   onReset,
 }) => {
+  const [showInfo, setShowInfo] = useState(false);
+  const info = algoInfo[selectedAlgorithm as AlgoKey];
+
   return (
     <div className="bg-gray-800 text-white p-4 rounded-lg shadow-md flex flex-wrap items-center justify-between gap-4 border border-gray-700">
       <div className="flex gap-4 flex-wrap">
@@ -67,6 +72,14 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           <option value="heap">Heap Sort</option>
           <option value="shell">Shell Sort</option>
         </select>
+
+        <button
+          className="text-blue-400 hover:text-blue-300 transition"
+          onClick={() => setShowInfo(true)}
+          title="Algorithm Info"
+        >
+          <FaInfoCircle size={18} />
+        </button>
       </div>
 
       <div className="flex">
@@ -96,6 +109,44 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           disabled={isSorting}
         />
       </div>
+
+      {showInfo && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50 px-4">
+          <div className="bg-[#1f1f1f] rounded-xl max-w-md w-full p-6 shadow-lg text-white relative">
+            <button
+              className="absolute top-4 right-4 text-gray-400 hover:text-white"
+              onClick={() => setShowInfo(false)}
+              title="Close"
+            >
+              <FaTimes />
+            </button>
+
+            <h2 className="text-xl font-bold mb-2 text-blue-400">
+              {info.heading}
+            </h2>
+            <p className="text-sm text-gray-300 mb-4">{info.description}</p>
+
+            <div className="text-sm">
+              <p>
+                <span className="font-semibold text-white">Best:</span>{" "}
+                {info.complexity.best}
+              </p>
+              <p>
+                <span className="font-semibold text-white">Average:</span>{" "}
+                {info.complexity.average}
+              </p>
+              <p>
+                <span className="font-semibold text-white">Worst:</span>{" "}
+                {info.complexity.worst}
+              </p>
+              <p>
+                <span className="font-semibold text-white">Space:</span>{" "}
+                {info.complexity.space}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
