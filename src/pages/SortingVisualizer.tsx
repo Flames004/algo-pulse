@@ -8,6 +8,8 @@ import { quickSort } from "../algorithms/sorting/quickSort";
 import { heapSort } from "../algorithms/sorting/heapSort";
 import { shellSort } from "../algorithms/sorting/shellSort";
 import PageWrapper from "../components/PageWrapper";
+import CodeSnippet from "../components/CodeSnippet";
+import { X } from "lucide-react";
 
 const SortingVisualizer = () => {
   const [array, setArray] = useState<number[]>([]);
@@ -16,6 +18,7 @@ const SortingVisualizer = () => {
   const [isSorting, setIsSorting] = useState<boolean>(false);
   const [barStates, setBarStates] = useState<string[]>([]); // To track the state of each bar during sorting
   const [speed, setSpeed] = useState<number>(100); // Speed of sorting visualization
+  const [showSnippet, setShowSnippet] = useState(false);
 
   // Function to generate a random array
   const generateArray = useCallback(
@@ -85,7 +88,43 @@ const SortingVisualizer = () => {
           speed={speed}
           setSpeed={setSpeed}
           onReset={resetVisualizer}
+          onShowSnippet={() => setShowSnippet(true)}
         />
+
+        {showSnippet && (
+          <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4 animate-fade-in">
+            <div className="relative max-w-2xl w-full animate-slide-up">
+              {/* Move close button OUTSIDE the main box */}
+              <button
+                className="absolute -top-5 -right-5 bg-gray-900 hover:bg-red-600 text-gray-300 hover:text-white rounded-full p-2 shadow-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-400 z-20 scale-100 hover:scale-110 active:scale-95 border-2 border-gray-800"
+                onClick={() => setShowSnippet(false)}
+                aria-label="Close"
+                tabIndex={0}
+                style={{ boxShadow: "0 4px 24px 0 rgba(0,0,0,0.25)" }}
+              >
+                <X size={22} />
+              </button>
+              <CodeSnippet algorithm={selectedAlgorithm as keyof typeof import("../data/algoSnippets").default} />
+            </div>
+            {/* Animations */}
+            <style>{`
+      .animate-fade-in {
+        animation: fadeInBg 0.3s;
+      }
+      @keyframes fadeInBg {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .animate-slide-up {
+        animation: slideUp 0.35s cubic-bezier(.4,2,.6,1);
+      }
+      @keyframes slideUp {
+        from { transform: translateY(40px) scale(0.98); opacity: 0; }
+        to { transform: translateY(0) scale(1); opacity: 1; }
+      }
+    `}</style>
+          </div>
+        )}
 
         <div className="flex items-end h-80 w-full gap-[2px] mt-6 overflow-hidden">
           {array.map((value, idx) => {

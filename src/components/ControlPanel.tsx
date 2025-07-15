@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaInfoCircle, FaTimes } from "react-icons/fa";
+import { FaInfoCircle, FaTimes, FaCode } from "react-icons/fa";
 import algoInfo, { type AlgoKey } from "../data/algoInfo";
 
 type ControlPanelProps = {
@@ -13,6 +13,7 @@ type ControlPanelProps = {
   speed: number;
   setSpeed: (speed: number) => void;
   onReset: () => void;
+  onShowSnippet: () => void; // <-- new prop
 };
 
 const ControlPanel: React.FC<ControlPanelProps> = ({
@@ -26,6 +27,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   speed,
   setSpeed,
   onReset,
+  onShowSnippet,
 }) => {
   const [showInfo, setShowInfo] = useState(false);
   const info = algoInfo[selectedAlgorithm as AlgoKey];
@@ -53,6 +55,14 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded"
         >
           Reset
+        </button>
+
+        <button
+          onClick={onShowSnippet}
+          className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded flex items-center gap-2"
+        >
+          <FaCode />
+          Code Snippet
         </button>
       </div>
 
