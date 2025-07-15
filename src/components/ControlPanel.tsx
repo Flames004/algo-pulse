@@ -120,41 +120,72 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         />
       </div>
 
+      {/* i button for information about the algorithm */}
       {showInfo && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50 px-4">
-          <div className="bg-[#1f1f1f] rounded-xl max-w-md w-full p-6 shadow-lg text-white relative">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 px-4 animate-fade-in">
+          <div className="relative max-w-md w-full rounded-2xl shadow-2xl bg-gradient-to-br from-[#232526] to-[#414345] border border-gray-700 p-8 animate-slide-up">
             <button
-              className="absolute top-4 right-4 text-gray-400 hover:text-white"
+              className="absolute -top-5 -right-5 bg-gray-900 hover:bg-red-600 text-gray-300 hover:text-white rounded-full p-2 shadow-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-400 z-20 scale-100 hover:scale-110 active:scale-95 border-2 border-gray-800"
               onClick={() => setShowInfo(false)}
               title="Close"
+              aria-label="Close"
             >
-              <FaTimes />
+              <FaTimes size={20} />
             </button>
-
-            <h2 className="text-xl font-bold mb-2 text-blue-400">
-              {info.heading}
+            <h2 className="flex items-center gap-2 text-2xl font-bold mb-2 text-blue-400 tracking-wide">
+              <FaInfoCircle className="text-blue-400" /> {info.heading}
             </h2>
-            <p className="text-sm text-gray-300 mb-4">{info.description}</p>
-
-            <div className="text-sm">
-              <p>
-                <span className="font-semibold text-white">Best:</span>{" "}
-                {info.complexity.best}
-              </p>
-              <p>
-                <span className="font-semibold text-white">Average:</span>{" "}
-                {info.complexity.average}
-              </p>
-              <p>
-                <span className="font-semibold text-white">Worst:</span>{" "}
-                {info.complexity.worst}
-              </p>
-              <p>
-                <span className="font-semibold text-white">Space:</span>{" "}
-                {info.complexity.space}
-              </p>
+            <p className="text-base text-gray-200 mb-5 leading-relaxed font-medium">
+              {info.description}
+            </p>
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <div className="font-semibold text-gray-300">Best Case</div>
+                <div className="text-green-400 font-mono">
+                  {info.complexity.best}
+                </div>
+              </div>
+              <div>
+                <div className="font-semibold text-gray-300">Average Case</div>
+                <div className="text-yellow-300 font-mono">
+                  {info.complexity.average}
+                </div>
+              </div>
+              <div>
+                <div className="font-semibold text-gray-300">Worst Case</div>
+                <div className="text-red-400 font-mono">
+                  {info.complexity.worst}
+                </div>
+              </div>
+              <div>
+                <div className="font-semibold text-gray-300">Space</div>
+                <div className="text-blue-300 font-mono">
+                  {info.complexity.space}
+                </div>
+              </div>
             </div>
+            {info.notes && (
+              <div className="mt-2 text-sm text-blue-200 bg-blue-900/30 rounded p-3 border border-blue-800">
+                <span className="font-semibold">Note:</span> {info.notes}
+              </div>
+            )}
           </div>
+          <style>{`
+      .animate-fade-in {
+        animation: fadeInBg 0.3s;
+      }
+      @keyframes fadeInBg {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .animate-slide-up {
+        animation: slideUp 0.35s cubic-bezier(.4,2,.6,1);
+      }
+      @keyframes slideUp {
+        from { transform: translateY(40px) scale(0.98); opacity: 0; }
+        to { transform: translateY(0) scale(1); opacity: 1; }
+      }
+    `}</style>
         </div>
       )}
     </div>
