@@ -38,7 +38,7 @@ const CodeSnippet: React.FC<Props> = ({ algorithm }) => {
         <div className="flex items-center gap-3">
           <Code size={22} className="text-blue-400" />
           <span className="font-semibold text-lg tracking-wide text-white">
-            {languageLabels[language]} Snippet
+            {languageLabels[language]} Code
           </span>
         </div>
         <div className="flex items-center gap-2">

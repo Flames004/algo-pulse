@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaInfoCircle, FaTimes, FaCode } from "react-icons/fa";
+import { FaInfoCircle, FaTimes, FaCode, FaChevronDown } from "react-icons/fa";
 import algoInfo, { type AlgoKey } from "../data/algoInfo";
 
 type ControlPanelProps = {
@@ -37,14 +37,14 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
       <div className="flex gap-4 flex-wrap">
         <button
           onClick={() => onGenerateArray()}
-          className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded"
+          className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded cursor-pointer"
         >
           Generate Array
         </button>
 
         <button
           onClick={onStart}
-          className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded"
+          className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded cursor-pointer"
           disabled={isSorting}
         >
           Start
@@ -52,39 +52,49 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
 
         <button
           onClick={onReset}
-          className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded"
+          className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded cursor-pointer"
         >
           Reset
         </button>
 
         <button
           onClick={onShowSnippet}
-          className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded flex items-center gap-2"
+          className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded flex items-center gap-2 cursor-pointer"
         >
           <FaCode />
-          Code Snippet
+          Code
         </button>
       </div>
 
       <div className="flex items-center gap-2">
         <label htmlFor="algorithm">Algorithm:</label>
-        <select
-          id="algorithm"
-          value={selectedAlgorithm}
-          onChange={(e) => setSelectedAlgorithm(e.target.value)}
-          className="bg-gray-700 p-2 rounded"
-        >
-          <option value="bubble">Bubble Sort</option>
-          <option value="selection">Selection Sort</option>
-          <option value="insertion">Insertion Sort</option>
-          <option value="quick">Quick Sort</option>
-          <option value="merge">Merge Sort</option>
-          <option value="heap">Heap Sort</option>
-          <option value="shell">Shell Sort</option>
-        </select>
-
+        <div className="relative">
+          <select
+            id="algorithm"
+            value={selectedAlgorithm}
+            onChange={(e) => setSelectedAlgorithm(e.target.value)}
+            className="bg-gray-700 p-2 pr-8 rounded appearance-none focus:outline-none cursor-pointer"
+            style={{
+              WebkitAppearance: "none",
+              MozAppearance: "none",
+              appearance: "none",
+            }}
+          >
+            <option value="bubble">Bubble Sort</option>
+            <option value="selection">Selection Sort</option>
+            <option value="insertion">Insertion Sort</option>
+            <option value="quick">Quick Sort</option>
+            <option value="merge">Merge Sort</option>
+            <option value="heap">Heap Sort</option>
+            <option value="shell">Shell Sort</option>
+          </select>
+          <FaChevronDown
+            className="pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400"
+            size={14}
+          />
+        </div>
         <button
-          className="text-blue-400 hover:text-blue-300 transition"
+          className="text-blue-400 hover:text-blue-300 transition cursor-pointer"
           onClick={() => setShowInfo(true)}
           title="Algorithm Info"
         >
